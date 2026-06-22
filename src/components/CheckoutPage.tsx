@@ -224,7 +224,7 @@ export function CheckoutPage() {
                   </span>
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
                 </button>
-                <input type="hidden" name="state" value={selectedState} />
+                <input type="hidden" name="state" value={selectedState || ""} readOnly />
                 
                 {isOpen && (
                   <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto border border-border bg-background shadow-lg custom-select-list divide-y divide-stone-100">
