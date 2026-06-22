@@ -85,8 +85,8 @@ export function CheckoutPage() {
               const fullName = (target.elements.namedItem("fullName") as HTMLInputElement)?.value || "";
               const email = (target.elements.namedItem("email") as HTMLInputElement)?.value || "";
               const phone = (target.elements.namedItem("phone") as HTMLInputElement)?.value || "";
-              const address = (target.elements.namedItem("address") as HTMLInputElement)?.value || "";
-              const landmark = (target.elements.namedItem("landmark") as HTMLInputElement)?.value || "";
+              const address1 = (target.elements.namedItem("address1") as HTMLInputElement)?.value || "";
+              const address2 = (target.elements.namedItem("address2") as HTMLInputElement)?.value || "";
               const city = (target.elements.namedItem("city") as HTMLInputElement)?.value || "";
               const postalCode = (target.elements.namedItem("postalCode") as HTMLInputElement)?.value || "";
               const state = (target.elements.namedItem("state") as HTMLInputElement)?.value || "Uttar Pradesh";
@@ -113,7 +113,7 @@ export function CheckoutPage() {
                   name: fullName,
                   email,
                   phone,
-                  address: landmark ? `${address} (Landmark: ${landmark})` : address,
+                  address: address2 ? `${address1}, ${address2}` : address1,
                   city,
                   postalCode,
                   state
@@ -132,70 +132,95 @@ export function CheckoutPage() {
               router.push(`/orders?id=${orderId}`);
             }}
           >
-            <fieldset className="min-w-0 grid md:grid-cols-2 gap-4">
-              <legend className="font-display text-2xl italic mb-5 md:col-span-2">Contact</legend>
-              <input
-                name="fullName"
-                className="w-full md:col-span-2 border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground"
-                placeholder="Full name"
-                required
-              />
-              <input
-                name="email"
-                className="w-full md:col-span-2 border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground"
-                placeholder="Email address"
-                type="email"
-                required
-              />
-              <input
-                name="phone"
-                className="w-full md:col-span-2 border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground"
-                placeholder="Phone number"
-                required
-              />
+            <fieldset className="min-w-0 grid gap-6">
+              <legend className="font-display text-2xl md:text-3xl italic mb-4">Who shall we anoint?</legend>
+              
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Email <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Full Name <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="fullName"
+                  required
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Phone <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none"
+                />
+              </div>
             </fieldset>
 
-            <fieldset className="min-w-0 grid md:grid-cols-2 gap-4">
-              <legend className="font-display text-2xl italic mb-5 md:col-span-2">Delivery</legend>
-              <input
-                name="address"
-                className="w-full md:col-span-2 border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground"
-                placeholder="Address line"
-                required
-              />
-              <input
-                name="landmark"
-                className="w-full md:col-span-2 border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground"
-                placeholder="Landmark"
-                required
-              />
-              <input
-                name="city"
-                className="w-full border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground"
-                placeholder="City"
-                required
-              />
-              <input
-                name="postalCode"
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]{6}"
-                maxLength={6}
-                placeholder="Postal code"
-                onChange={(e) => {
-                  e.target.value = e.target.value.replace(/\D/g, "");
-                }}
-                className="w-full border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground font-mono tracking-[0.25em]"
-                required
-              />
-              <div className="relative md:col-span-2" ref={dropdownRef}>
+            <fieldset className="min-w-0 grid gap-6">
+              <legend className="font-display text-2xl md:text-3xl italic mb-4">Where shall it travel?</legend>
+              
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Address Line 1 <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="address1"
+                  required
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Address Line 2
+                </label>
+                <input
+                  type="text"
+                  name="address2"
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  City <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  required
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5 w-full relative" ref={dropdownRef}>
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  State <span className="text-accent">*</span>
+                </label>
                 <button
                   type="button"
                   onClick={() => setIsOpen(!isOpen)}
-                  className="w-full border border-border bg-transparent px-4 py-3 text-sm flex items-center justify-between cursor-pointer focus:border-foreground outline-none text-left"
+                  className="w-full bg-transparent border-b border-border py-2.5 text-sm flex items-center justify-between cursor-pointer focus:border-foreground outline-none text-left rounded-none px-0"
                 >
-                  <span className={selectedState ? "text-foreground" : "text-muted-foreground"}>
-                    {selectedState || "Select State / Union Territory"}
+                  <span className={selectedState ? "text-foreground font-medium" : "text-muted-foreground"}>
+                    {selectedState || "Select State"}
                   </span>
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
                 </button>
@@ -225,6 +250,24 @@ export function CheckoutPage() {
                     ))}
                   </div>
                 )}
+              </div>
+
+              <div className="flex flex-col gap-1.5 w-full">
+                <label className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Pincode <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="postalCode"
+                  inputMode="numeric"
+                  pattern="[0-9]{6}"
+                  maxLength={6}
+                  onChange={(e) => {
+                    e.target.value = e.target.value.replace(/\D/g, "");
+                  }}
+                  required
+                  className="w-full bg-transparent border-b border-border focus:border-foreground py-2 text-sm outline-none transition-colors rounded-none font-mono tracking-[0.25em]"
+                />
               </div>
             </fieldset>
 
