@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import { Logo } from "./Logo";
 
 export function SiteNav() {
   const { count } = useCart();
@@ -35,9 +36,9 @@ export function SiteNav() {
           
           <Link
             href="/"
-            className="font-display font-light text-2xl md:text-[28px] tracking-tight absolute left-1/2 -translate-x-1/2 whitespace-nowrap"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-10 md:h-12 w-auto whitespace-nowrap"
           >
-            Kalki <span className="italic font-light">Fragrances</span>
+            <Logo className="h-10 md:h-12 w-auto" />
           </Link>
           
           <div className="flex justify-end gap-6 md:gap-8 font-sans text-[11px] uppercase tracking-[0.2em] font-medium ml-auto z-10 items-center">

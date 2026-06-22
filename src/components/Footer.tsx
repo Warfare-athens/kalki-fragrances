@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
     <footer className="px-6 py-20 border-t border-border">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <h4 className="font-display text-2xl mb-6">Kalki Fragrances</h4>
+          <Logo className="h-14 w-auto mb-6 text-foreground" />
           <p className="font-sans text-[12px] text-muted-foreground max-w-xs leading-relaxed mb-8">
             Subscribe for olfactory dispatches and early access to rare extractions.
           </p>
